@@ -21,7 +21,7 @@ public class NgramMapper extends MapReduceBase implements Mapper<LongWritable, T
 
             		for (int j = 0; j < tokens.length; j++) {
 				String curPhrase = tokens[j];
-				if (curPhrase.trim().isEmpty()p) {
+				if (curPhrase.trim().isEmpty()) {
 					continue;
 				}
 				phrase.set(curPhrase);
