@@ -16,24 +16,24 @@ public class NgramMapper extends MapReduceBase implements Mapper<LongWritable, T
 	public void map(LongWritable longWritable, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter) throws IOException {
 		String line = value.toString();
 		if (!line.isEmpty()) {
-            line = line.replaceAll("[^a-zA-Z]", " ").toLowerCase();	// only consider ngrams per line
+            		line = line.replaceAll("[^a-zA-Z]", " ").toLowerCase();	// only consider ngrams per line
 			String[] tokens = line.trim().split(" +");
 
-            for (int j = 0; j < tokens.length; j++) {
+            		for (int j = 0; j < tokens.length; j++) {
 				String curPhrase = tokens[j];
-				if (curPhrase.equals("") || curPhrase.equals(" ")) {
+				if (curPhrase.trim().isEmpty()p) {
 					continue;
 				}
 				phrase.set(curPhrase);
 				output.collect(phrase, one);
-                for (int i = 1; i<5; i++) { 	// 2-5 ngrams
+                		for (int i = 1; i < 5; i++) { // 2-5 ngrams
 					if (i+j < tokens.length) {
 						curPhrase += " " + tokens[i+j];
 						phrase.set(curPhrase);
 						output.collect(phrase, one);
 					}
-                }
-            }
+                		}
+            		}
 			reporter.progress();
 		}
 	}
