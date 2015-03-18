@@ -1,0 +1,4 @@
+*.swp
+*.swl
+*/*.class
+target/
